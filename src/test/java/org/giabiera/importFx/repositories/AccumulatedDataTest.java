@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @SpringBootTest(classes=ImportFilesApplication.class)
-public class AccumulateDDataTest {
+public class AccumulatedDataTest {
 
 	@Autowired
 	private AccumulatedDataRepository repository;
@@ -53,7 +53,7 @@ public class AccumulateDDataTest {
 	public void find_01() throws Exception {
 		repository.save(new AccumulatedData("AED", 100));
 	
-		AccumulatedData data = repository.findByOrderingCurrency("AED");
+		AccumulatedData data = repository.findOne("AED");
 		assertNotNull(data);
 		assertTrue( data.getCountOfDeals().equals(100));
 	}
@@ -62,7 +62,7 @@ public class AccumulateDDataTest {
 	public void find_02() throws Exception {
 		repository.save(new AccumulatedData("AED", 100));
 	
-		AccumulatedData data = repository.findByOrderingCurrency("USD");
+		AccumulatedData data = repository.findOne("USD");
 		assertNull(data);
 		
 	}
@@ -72,14 +72,14 @@ public class AccumulateDDataTest {
 	public void delete_01() throws Exception {
 		repository.save(new AccumulatedData("AED", 100));
 
-		repository.delete(repository.findByOrderingCurrency("AED"));
+		repository.delete(repository.findOne("AED"));
 		
 		assertEquals(0, repository.count());
 	}
 
 	@Test(expected = EmptyResultDataAccessException.class)
 	public void delete_02() throws Exception {
-		repository.delete(new Long(1));
+		repository.delete("Invalid");
 
 	}
 }

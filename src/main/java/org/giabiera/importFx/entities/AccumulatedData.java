@@ -2,38 +2,31 @@ package org.giabiera.importFx.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "accumulated_data")
 public class AccumulatedData {
-	
-	private Long id;
-	private Integer countOfDeals;
+
 	private String orderingCurrency;
+	private Integer countOfDeals;
 	
-	public AccumulatedData() {
-		
-	}
+	public AccumulatedData(){}
 	
 	public AccumulatedData(String orderingCurrency, Integer countOfDeals) {
+		this.orderingCurrency = orderingCurrency;
 		this.countOfDeals = countOfDeals;
+	}
+
+	@Id
+	public String getOrderingCurrency() {
+		return orderingCurrency;
+	}
+
+	public void setOrderingCurrency(String orderingCurrency) {
 		this.orderingCurrency = orderingCurrency;
 	}
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	@Column(name = "countOfDeals", nullable = false)
+
+	@Column(nullable=false)
 	public Integer getCountOfDeals() {
 		return countOfDeals;
 	}
@@ -42,12 +35,8 @@ public class AccumulatedData {
 		this.countOfDeals = countOfDeals;
 	}
 	
-	@Column(name = "orderingCurrency",nullable = false,unique = true)
-	public String getOrderingCurrency() {
-		return orderingCurrency;
+	public void incrementCountOfDeals(){
+		this.countOfDeals++;
 	}
 	
-	public void setOrderingCurrency(String orderingCurrency) {
-		this.orderingCurrency = orderingCurrency;
-	}
 }

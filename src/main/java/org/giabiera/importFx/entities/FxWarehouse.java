@@ -8,25 +8,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "fx_warehouse")
 public class FxWarehouse {
-	
+
 	private Long id;
 	private Date dateCreated;
 	private String orderingCurrency;
 	private String toCurrency;
 	private BigDecimal amount;
 	
-	public FxWarehouse() {
-		
-	}
+	public FxWarehouse(){}
 	
-	public FxWarehouse(Date dateCreated, String orderingCurrency, String toCurrency, BigDecimal amount ) {
+	public FxWarehouse(Date dateCreated, String orderingCurrency, String toCurrency, BigDecimal amount){
 		this.dateCreated = dateCreated;
 		this.orderingCurrency = orderingCurrency;
 		this.toCurrency = toCurrency;
@@ -34,7 +30,7 @@ public class FxWarehouse {
 	}
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
@@ -42,7 +38,7 @@ public class FxWarehouse {
 		this.id = id;
 	}
 	
-	@Column(name="dateCreated", nullable=false)
+	@Column(nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getDateCreated() {
 		return dateCreated;
@@ -51,7 +47,7 @@ public class FxWarehouse {
 		this.dateCreated = dateCreated;
 	}
 	
-	@Column(name="orderingCurrency", nullable=false)
+	@Column(nullable=false)
 	public String getOrderingCurrency() {
 		return orderingCurrency;
 	}
@@ -59,7 +55,7 @@ public class FxWarehouse {
 		this.orderingCurrency = orderingCurrency;
 	}
 	
-	@Column(name="toCurrency", nullable=false)
+	@Column(nullable=false)
 	public String getToCurrency() {
 		return toCurrency;
 	}
@@ -67,12 +63,21 @@ public class FxWarehouse {
 		this.toCurrency = toCurrency;
 	}
 	
-	@Column(name="amount", nullable=false)
+	@Column(nullable=false)
 	public BigDecimal getAmount() {
 		return amount;
 	}
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Record [id=" + id
+				+ ", dateCreated=" + dateCreated
+				+ ", orderingCurrency=" + orderingCurrency
+				+ ", toCurrency=" + toCurrency 
+				+ ", amount=" + amount + "]";
+	}
+	
 }
