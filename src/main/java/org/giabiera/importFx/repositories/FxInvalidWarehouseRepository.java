@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FxInvalidWarehouseRepository extends CrudRepository<FxInvalidWarehouse, Long> {
+public interface FxInvalidWarehouseRepository extends CrudRepository<FxInvalidWarehouse, String> {
 
 }
