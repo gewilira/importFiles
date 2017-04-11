@@ -61,27 +61,9 @@ public class FxInvalidWarehouseTest {
 		repository.delete("Invalid");
 
 	}
-
-	@Test
-	public void find_01() throws Exception {
-		List<FxInvalidWarehouse> Fxinvalids = new ArrayList<FxInvalidWarehouse>();
-		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record1", "file path"));
-		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record2", "file path"));
-		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record3", "file path"));
-
-		repository.save(Fxinvalids);
-		int count = 0;
-		for (FxInvalidWarehouse Fxinvalid : repository.findAll()) {
-			if (Fxinvalid.getInvalidRecord().equals("Invalid Record")) {
-				count++;
-			}
-		}
-
-		assertEquals(3, count);
-	}
-
+	
 	@Test()
-	public void find_02() throws Exception {
+	public void find_01() throws Exception {
 		assertNull(repository.findOne("Invalid"));
 	}
 
