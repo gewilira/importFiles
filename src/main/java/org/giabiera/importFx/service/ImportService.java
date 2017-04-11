@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.transaction.Transactional;
 
 import org.giabiera.importFx.utils.RecordUtils;
+import org.giabiera.importFx.validator.FxrecordValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class ImportService {
 				log.info("Importing... {}" + currentFile.getName());
 				
 				Map<List<String[]>, Map<String, List<String>>> data = RecordUtils
-						.parseCSVtoRecord(currentFile, fileSeparator);
+						.parseCSVtoRecord(currentFile, fileSeparator, new FxrecordValidator());
 				Map.Entry<List<String[]>, Map<String, List<String>>> entry = data.entrySet().iterator().next();
 				List<String[]> validRecords = entry.getKey();
 				Map<String, List<String>> value = entry.getValue();

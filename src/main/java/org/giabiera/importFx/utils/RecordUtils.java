@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.giabiera.importFx.service.ImportService;
+import org.giabiera.importFx.validator.IValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +17,7 @@ public class RecordUtils {
 	
 	private static final Logger log = LoggerFactory.getLogger(RecordUtils.class);
 
-	public static Map<List<String[]>,Map<String,List<String>>> parseCSVtoRecord(final File file, final String separator) {
+	public static Map<List<String[]>,Map<String,List<String>>> parseCSVtoRecord(final File file, final String separator, final IValidator validator) {
 		String line = "";
 		
 		List<String[]> records = new ArrayList<>();
@@ -26,7 +26,7 @@ public class RecordUtils {
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			while ((line = br.readLine()) != null) {
 				String[] data = line.split(separator);
-				if(true) {
+				if(validator.validateRecord(data)) {
 					records.add(data);
 				} else {
 					invalidRecords.add(line);
