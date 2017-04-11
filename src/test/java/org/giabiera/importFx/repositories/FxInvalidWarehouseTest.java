@@ -76,7 +76,7 @@ public class FxInvalidWarehouseTest {
 			}
 		}
 
-		assertEquals(2, count);
+		assertEquals(3, count);
 	}
 
 	@Test()
