@@ -29,12 +29,13 @@ public class RecordUtils {
 				if(validator.validateRecord(data)) {
 					records.add(data);
 				} else {
+					log.warn("Invalid row detected {}, file : {}", line, file.getName());
 					invalidRecords.add(line);
 				}
 			}
 
 		} catch (IOException e) {
-			log.error("Failed parsing {} - {}", file.getName(), e);
+			log.error("Failed parsing {} - {}", file.getName(), e.getCause());
 		}
 		
 		Map<String,List<String>> invalidData = new HashMap<>();

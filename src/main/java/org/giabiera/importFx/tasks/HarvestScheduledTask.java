@@ -32,9 +32,9 @@ public class HarvestScheduledTask {
 
 	@Scheduled(fixedRate = 5000)
 	public void reportCurrentTime() throws ParseException {
-		log.info("Importing {}", dateFormat.format(new Date()));
+		log.info("Importing {} ", dateFormat.format(new Date()));
 		importService.harvestCSVtoFxrecord(filePath, fileSeparator);
-		log.info("Done {}", dateFormat.format(new Date()));
+		log.info("Done {} ", dateFormat.format(new Date()));
 	}
 
 }
