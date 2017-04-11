@@ -32,17 +32,18 @@ public class FxInvalidWarehouseTest {
 	@Test
 	public void save_02() throws Exception {
 		repository.save(new FxInvalidWarehouse("Invalid Record", "file path"));
-		repository.save(new FxInvalidWarehouse("Invalid Record", "file path"));
-		assertEquals(2, repository.count());
+		repository.save(new FxInvalidWarehouse("Invalid Record1", "file path"));
+		repository.save(new FxInvalidWarehouse("Invalid Record2", "file path"));
+		assertEquals(3, repository.count());
 	}
 
 	@Test
 	public void save_03() throws Exception {
 
 		List<FxInvalidWarehouse> Fxinvalids = new ArrayList<FxInvalidWarehouse>();
-		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record", "file path"));
-		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record", "file path"));
-		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record", "file path"));
+		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record1", "file path"));
+		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record2", "file path"));
+		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record3", "file path"));
 
 		repository.save(Fxinvalids);
 		assertEquals(3, repository.count());
@@ -64,9 +65,9 @@ public class FxInvalidWarehouseTest {
 	@Test
 	public void find_01() throws Exception {
 		List<FxInvalidWarehouse> Fxinvalids = new ArrayList<FxInvalidWarehouse>();
-		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record", "file path"));
-		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record", "file path"));
-		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record", "file path"));
+		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record1", "file path"));
+		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record2", "file path"));
+		Fxinvalids.add(new FxInvalidWarehouse("Invalid Record3", "file path"));
 
 		repository.save(Fxinvalids);
 		int count = 0;
